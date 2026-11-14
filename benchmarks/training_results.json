@@ -94,7 +94,12 @@
         "episode": 12000,
         "epsilon": 0.05
       }
-    ]
+    ],
+    "random_baseline": {
+      "episodes": 300,
+      "mean_reward": 0.4653,
+      "perfect_report_rate": 0.1633
+    }
   },
   "q_table": {
     "INPUT-001|report": [
