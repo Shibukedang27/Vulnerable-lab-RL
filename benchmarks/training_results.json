@@ -1,0 +1,148 @@
+{
+  "algorithm": "tabular Q-learning",
+  "action_space_size": 7,
+  "scenarios": [
+    "AUTHZ-001",
+    "INPUT-001",
+    "SECRET-001"
+  ],
+  "metrics": {
+    "episodes": 300,
+    "mean_reward": 1,
+    "perfect_report_rate": 1,
+    "training_episodes": 12000,
+    "seed": 7,
+    "final_epsilon": 0.05,
+    "learning_checkpoints": [
+      {
+        "episode": 600,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 1200,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 1800,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 2400,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 3000,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 3600,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 4200,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 4800,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 5400,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 6000,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 6600,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 7200,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 7800,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 8400,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 9000,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 9600,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 10200,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 10800,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 11400,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 12000,
+        "epsilon": 0.05
+      }
+    ]
+  },
+  "q_table": {
+    "INPUT-001|report": [
+      0.1999188703615854,
+      0.9999999999999998,
+      0.1976941569907863,
+      0.3997971759039635,
+      0.7999455548212926,
+      0.19980192959371434,
+      0.19999643188076824
+    ],
+    "AUTHZ-001|report": [
+      0.9999999999999998,
+      0.19998638870532315,
+      0.39991692325026346,
+      0.7999885820184583,
+      0.3999727774106463,
+      0.19989858795198176,
+      0.1999350962892683
+    ],
+    "SECRET-001|report": [
+      0.39950482398428583,
+      0.19999128877140682,
+      0.9999999999999998,
+      0.1998732349399772,
+      0.3998961540628293,
+      0.7999319435266158,
+      0.1999350962892683
+    ]
+  },
+  "learned_policy": {
+    "AUTHZ-001": {
+      "type": "submit",
+      "finding_id": "AUTHZ-MISSING-OWNERSHIP-CHECK",
+      "severity": "high",
+      "evidence": "The design does not verify record ownership for the authenticated user."
+    },
+    "INPUT-001": {
+      "type": "submit",
+      "finding_id": "INPUT-MISSING-TYPE-AND-RANGE-VALIDATION",
+      "severity": "medium",
+      "evidence": "The service needs type and range validation for the quantity field."
+    },
+    "SECRET-001": {
+      "type": "submit",
+      "finding_id": "SECRET-SENSITIVE-DATA-IN-LOGS",
+      "severity": "high",
+      "evidence": "The diagnostic logs expose a credential and should redact sensitive values."
+    }
+  }
+}
