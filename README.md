@@ -85,3 +85,13 @@ Use this project for local education and authorized evaluation only. Do not test
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Reinforcement-learning baseline
+
+A dependency-free tabular Q-learning agent and reproducible training runner are included. Train with:
+
+```bash
+python -m vulnerable_lab_rl.train --episodes 12000 --seed 7
+```
+
+See [docs/TRAINING.md](docs/TRAINING.md) for the algorithm, evaluation protocol, limitations, and committed [training artifact](benchmarks/training_results.json). The initial benchmark is deliberately finite and synthetic; its perfect score demonstrates learning the small candidate mapping, not generalization to unseen vulnerabilities or real-world penetration-testing capability.
