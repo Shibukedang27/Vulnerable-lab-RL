@@ -26,8 +26,9 @@ The environment exposes an inspection transition before report submission. The l
 - Mean evaluation reward: 1.0
 - Perfect-report rate: 1.0
 - Final exploration rate (epsilon): 0.05
+- Random-policy baseline: mean reward 0.4653; perfect-report rate 0.1633 (300 episodes, seed 7)
 
-These perfect results are expected in this deliberately tiny, finite benchmark: the candidate action set contains the correct synthetic answer for each known scenario. They demonstrate that the implementation learns this finite mapping, not that it generalizes to unseen vulnerabilities or performs real-world penetration testing.
+The random-policy comparison provides a basic sanity check, not a generalization test. These perfect results are expected in this deliberately tiny, finite benchmark: the candidate action set contains the correct synthetic answer for each known scenario. They demonstrate that the implementation learns this finite mapping, not that it generalizes to unseen vulnerabilities or performs real-world penetration testing.
 
 ## Next experiments
 
