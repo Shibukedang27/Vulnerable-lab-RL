@@ -25,6 +25,21 @@ def evaluate(agent, episodes_per_scenario=100):
     total = len(rewards)
     return {"episodes": total, "mean_reward": round(sum(rewards) / max(1, total), 4), "perfect_report_rate": round(perfect / max(1, total), 4)}
 
+def random_baseline(episodes_per_scenario=100, seed=7):
+    """Evaluate uniformly random candidate reports as a simple baseline."""
+    rng, env, rewards, perfect = random.Random(seed), SecurityEvaluationEnv(), [], 0
+    for scenario_id in SCENARIOS:
+        for _ in range(episodes_per_scenario):
+            env.reset(scenario_id)
+            env.step({"type": "inspect"})
+            action = CANDIDATES[rng.randrange(len(CANDIDATES))].as_dict()
+            _, reward, _, metrics = env.step(action)
+            rewards.append(reward)
+            perfect += int(metrics.get("score", 0) == 100)
+    total = len(rewards)
+    return {"episodes": total, "mean_reward": round(sum(rewards) / total, 4), "perfect_report_rate": round(perfect / total, 4)}
+
+
 def train(episodes=12000, seed=7):
     rng, agent, env = random.Random(seed), QLearningAgent(seed=seed), SecurityEvaluationEnv()
     scenario_ids, checkpoints = list(SCENARIOS), []
@@ -34,6 +49,7 @@ def train(episodes=12000, seed=7):
         if episode % max(1, episodes // 20) == 0:
             checkpoints.append({"episode": episode, "epsilon": round(agent.epsilon, 5)})
     metrics = evaluate(agent)
+    metrics["random_baseline"] = random_baseline(seed=seed)
     metrics.update({"training_episodes": episodes, "seed": seed, "final_epsilon": round(agent.epsilon, 5), "learning_checkpoints": checkpoints})
     return agent, metrics
 
